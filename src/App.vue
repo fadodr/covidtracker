@@ -1,28 +1,53 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container-fluid">
+    <Header @togglebutton="buttontoggled"/>
+    <Homepage :class="{'isactive' : isActive}"/>
+    <Footer :class="{'isactive' : isActive}"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Homepage from './components/hompage'
+import Footer from './components/footer'
+import Header from './components/header'
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  components : {
+    Homepage,
+    Footer,
+    Header
+  },
+  data(){
+    return {
+      isActive : false
+    }
+  },
+  methods: {
+    buttontoggled() {
+      this.isActive = !this.isActive
+    }
+  },
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+*{
+  margin: 0;
+  padding: 0;
+}
+  @font-face {
+  font-family: "Graphik";
+  src: local("Graphik"),
+   url(./assets/fonts/Graphikfont/GraphikRegular.otf) format("truetype");
+}
+.container-fluid {
+  background-color: #F2F3F7;
+}
+.isactive {
+  display: block;
+}
+@media screen and (max-width : 880px) {
+  .isactive {
+  display: none;
+}
 }
 </style>
